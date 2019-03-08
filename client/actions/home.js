@@ -6,7 +6,8 @@
  * @Last Modified time: 2019-03-06 16:35:53
  */
 
-const ADD_TODO = 'ADD_TODO';
+export const ADD_TODO = 'ADD_TODO';
+export const FETCH_DATA = 'FETCH_DATA';
 
 export function addTodo(payload) {
     return {
@@ -14,3 +15,10 @@ export function addTodo(payload) {
         payload
     };
 }
+
+export function fetchData(payload) {
+    return {
+        type: FETCH_DATA,
+        payload
+    };
+};

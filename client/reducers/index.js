@@ -7,8 +7,11 @@
  */
 
 import {combineReducers} from 'redux';
-import {todo} from './home';
+import {todo, fetchData} from './home';
+import {walker} from './walker';
 
 export default combineReducers({
-    todo
+    todo,
+    walker,
+    fetchData
 });

@@ -9,7 +9,9 @@
 import React, {Component} from 'react';
 import Test from 'Components/test';
 import {connect} from 'react-redux';
-import {addTodo} from '../../actions/home';
+import axios from 'axios';
+import {addTodo, fetchData, FETCH_DATA} from '../../actions/home';
+import {walker} from '../../actions/walker';
 
 class Home extends Component {
     constructor(props) {
@@ -17,28 +19,51 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            this.props.toggletodo(30);
-            this.forceUpdate()
-        }, 3000);
+        this.props.getFetchData();
+        this.props.toggletodo(30);
+        this.props.walker({data: 99999});
+    }
+
+    getData() {
+        axios.get('/list', {}).then(data => {
+            console.log(data);
+        });
     }
 
     render() {
+        console.log(this.props);
         return (
             <div>
                 <Test/>
                 <p>{this.props.todos.age}</p>
+                <p>长度:{this.props.fetchData.list.length}</p>
             </div>
         );
     }
 }
 
-const mapStateToProps = state => ({
-    todos: state.todo
-});
+const mapStateToProps = state => {
+    return {
+        todos: state.todo,
+        test: state.walker,
+        fetchData: state.fetchData
+    }
+};
 
 const mapDispatchToProps = dispatch => ({
-    toggletodo: id => dispatch(addTodo(id))
+    toggletodo: id => dispatch(addTodo(id)),
+    walker: data => dispatch(walker(data)),
+    getFetchData: () => {
+        dispatch(
+            axios.get('/api/list', {})
+                .then(res => {
+                    return {
+                        type: FETCH_DATA,
+                        payload: res.data
+                    };
+                })
+        );
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
