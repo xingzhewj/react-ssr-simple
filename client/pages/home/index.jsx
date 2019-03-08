@@ -19,15 +19,19 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        this.props.getFetchData();
+        this.getData();
         this.props.toggletodo(30);
         this.props.walker({data: 99999});
     }
 
     getData() {
-        axios.get('/list', {}).then(data => {
-            console.log(data);
-        });
+        const result = axios.get('/api/list', {})
+            .then(res => {
+                const t = fetchData();
+                t.payload = res.data;
+                return t;
+            });
+        this.props.getFetchData(result);
     }
 
     render() {
@@ -53,16 +57,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     toggletodo: id => dispatch(addTodo(id)),
     walker: data => dispatch(walker(data)),
-    getFetchData: () => {
-        dispatch(
-            axios.get('/api/list', {})
-                .then(res => {
-                    return {
-                        type: FETCH_DATA,
-                        payload: res.data
-                    };
-                })
-        );
+    getFetchData: result => {
+        dispatch(result);
     }
 });
 
