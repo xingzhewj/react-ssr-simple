@@ -1,7 +1,7 @@
 {
   "name": "ssr-react",
   "version": "1.0.0",
-  "description": "",
+  "description": "react ssr",
   "main": "index.js",
   "scripts": {
     "build-web": "webpack --config ./build/webpack-client-prod.config.js",
