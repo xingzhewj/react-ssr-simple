@@ -20,7 +20,7 @@ class Home extends React.Component {
             <div>
                 <p>home</p>
                 <p>{this.props.sex}</p>
-                <button onClick={() => this.updateSex()}>切换性别222</button>
+                <button onClick={() => this.updateSex()}>切换性别</button>
             </div>
         );
     }
