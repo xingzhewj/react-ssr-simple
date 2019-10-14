@@ -1,11 +1,11 @@
 const path = require('path');
+const webpack = require('webpack');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
     mode: 'production',
     entry: {
-        client: path.resolve(__dirname, '../src/client/index.js'),
-        vendors: ['react', 'react-dom', 'react-redux', 'redux', 'react-router-dom']
+        client: path.resolve(__dirname, '../src/client/index.js')
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
@@ -31,5 +31,26 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.less', '.css', '.ts', '.jsx']
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    name: "vendor",
+                    test: /[\\/]node_modules[\\/]/,
+                    chunks: "all",
+                    filename: "vendor.js",
+                    priority: 10 // 优先级
+                },
+                common: {
+                    name: "common",
+                    test: /[\\/]src[\\/]/,
+                    minSize: 1024,
+                    chunks: "all",
+                    filename: 'common.js',
+                    priority: 5
+                }
+            }
+        }
     }
 };

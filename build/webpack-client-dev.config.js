@@ -30,5 +30,26 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.less', '.css', '.ts', '.jsx']
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    name: "vendor",
+                    test: /[\\/]node_modules[\\/]/,
+                    chunks: "all",
+                    filename: "vendor.js",
+                    priority: 10 // 优先级
+                },
+                common: {
+                    name: "common",
+                    test: /[\\/]src[\\/]/,
+                    minSize: 1024,
+                    chunks: "all",
+                    filename: 'common.js',
+                    priority: 5
+                }
+            }
+        }
     }
 };

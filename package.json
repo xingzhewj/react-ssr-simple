@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build-web": "webpack --config ./build/webpack-client-prod.config.js",
-    "build-server": "webpack --config ./build/webpack-server-dev.config.js --progress",
+    "build-server": "webpack --config ./build/webpack-server-prod.config.js --progress",
     "build": "npm run build-web & npm run build-server",
     "dev": "node index.js",
     "server": "node dist/server.js",

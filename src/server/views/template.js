@@ -10,5 +10,7 @@ export default `<!DOCTYPE html>
 <body>
     <div id="root"><%- htmlMarkup %></div>
     <script type="text/javascript" src="client.js"></script>
+    <script type="text/javascript" src="vendor.js"></script>
+    <script type="text/javascript" src="common.js"></script>
 </body>
 </html>`;
