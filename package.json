@@ -6,8 +6,11 @@
   "scripts": {
     "build-web": "webpack --config ./build/webpack-client-prod.config.js",
     "build-server": "webpack --config ./build/webpack-server-dev.config.js --progress",
+    "build": "npm run build-web & npm run build-server",
     "dev": "node index.js",
-    "server": "node dist/server.js"
+    "server": "node dist/server.js",
+    "pm2": "pm2 start ecosystem.config.js",
+    "stop": "pm2 delete all"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +26,7 @@
     "koa": "^2.8.1",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
+    "pm2": "^4.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.1",
