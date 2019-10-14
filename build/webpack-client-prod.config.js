@@ -2,7 +2,7 @@ const path = require('path');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: {
         client: path.resolve(__dirname, '../src/client/index.js'),
         vendors: ['react', 'react-dom', 'react-redux', 'redux', 'react-router-dom']
